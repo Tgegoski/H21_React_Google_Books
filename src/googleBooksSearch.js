@@ -1,11 +1,15 @@
 import React, { useState } from "react";  
 import axios from 'axios';  
 import { Card } from 'react-bootstrap';  
-function googleBooksSearch() {  
+
+const API_KEY = `${process.env.REACT_APP_GOOGLE_API_KEY}`
+ 
+function GoogleBooksSearch() {  
     const [book, setBook] = useState("");  
     const [result, setResult] = useState([]);  
-    const [apiKey, setApiKey] = useState("AIzaSyCWEYFuDLgp_AhivzEJVq_TRHIkxHMAWDk");
 
+    
+    var config = {}
     var token = config.MY_API_TOKEN;
     var key = config.SECRET_API_KEY; 
 
@@ -41,8 +45,8 @@ function googleBooksSearch() {
   
                                 <Card.Img variant="top" src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.title} />  
                                 <Card.Body>  
-                                    <h5 className="card-title">Card title</h5>  
-                                    <a className="btn btn-primary">Know more</a>  
+                                    <h5 className="card-title">Google Books Search</h5>  
+                                    <a className="btn btn-primary">Search Books</a>  
                                 </Card.Body>  
                             </Card>  
                         </div>  
@@ -54,4 +58,4 @@ function googleBooksSearch() {
     )  
 }  
   
-export default googleBooksSearch  
+export default GoogleBooksSearch  
