@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb:localhost/googlebooks", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb:localhost/nameless-island-78140", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
