@@ -1,4 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
+import NavBar from "../components/NavBar";
+import SearchBooks from "../components/SearchBooks";
+import API from "..//routes/api";
 
 const Home = () => (
   <div>
