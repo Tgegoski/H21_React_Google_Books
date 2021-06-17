@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Home = (props) => {
-  return <div>WE ARE LOGGED IN</div>;
+  return <div>Welcome to Google Books</div>;
 };
 
 Home.propTypes = {};
