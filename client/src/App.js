@@ -1,29 +1,27 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import Home from ".pages/Home";
+import SearchBooks from "../components/SearchBooks";
+import SaveBooks from "../components/SaveBooks";
+import Nav from "../components/Nav";
 import "./App.css";  
-import Country from './components/country';  
+import "bootstrap/dist/css/bootstrap..min.css";
+import { BrowserRoute as Router, Route, Switch } from "react-router-dom";
 import GoogleBooksSearch from "./googleBooksSearch";  
-  
-function App() {  
-  return (  
-    <GoogleBooksSearch></GoogleBooksSearch>  
-  )  
-}  
-  
-export default App;   
-// function App() {
-//   return (
-//     <div className="App">
-//       <div className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <h2>Welcome to React</h2>
-//       </div>
-//       <p className="App-intro">
-//         To get started, edit <code>src/App.js</code> and save to reload.
-//       </p>
-//     </div>
-//   );
-// }
+   
+function App() {
+  return (
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={SaveBooks} />
+          <Route exact path="/" component={SearchBooks} />
+        </Switch>
+      </div>
+      
+    </Router>
+  );
+}
 
 
-// export default App;
+export default App;

@@ -4,9 +4,12 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require('mongoose');
 const mongojs = require('mongojs')
-const dotenv = require('dotenv').config
-
+require('dotenv').config();
 const databaseUrl = "googlebooks";
+const collections = ['books'];
+const db = mongojs(databaseUrl, collections);
+const routes = require('routes/apiBooks');
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -23,6 +26,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb:localhost/nameless-island-7
 });
 
 // Define API routes here
+app.use(routes);
 
 // Send every other request to the React app
 // Define any API routes before this runs
