@@ -1,21 +1,20 @@
 import React, { Component } from "react";
-import Home from ".pages/Home";
-import SearchBooks from "../components/SearchBooks";
-import SaveBooks from "../components/SaveBooks";
-import Nav from "../components/Nav";
+import Home from "./pages/Home";
+import SaveBooks from "./pages/Saved";
+import Nav from "./components/NavBar";
 import "./App.css";  
-import "bootstrap/dist/css/bootstrap..min.css";
-import { BrowserRoute as Router, Route, Switch } from "react-router-dom";
-import GoogleBooksSearch from "./googleBooksSearch";  
+// import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
    
 function App() {
   return (
     <Router>
+      <Nav />
       <div>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/" component={SaveBooks} />
-          <Route exact path="/" component={SearchBooks} />
+          <Route path="/index.html" component={Home} />
+          <Route exact path="/saved" component={SaveBooks} />
         </Switch>
       </div>
       

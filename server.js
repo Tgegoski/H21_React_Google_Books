@@ -3,12 +3,12 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require('mongoose');
-const mongojs = require('mongojs')
+// const mongojs = require('mongojs')
 require('dotenv').config();
-const databaseUrl = "googlebooks";
-const collections = ['books'];
-const db = mongojs(databaseUrl, collections);
-const routes = require('routes/apiBooks');
+// const databaseUrl = "googlebooks";
+// const collections = ['books'];
+// const db = mongojs(databaseUrl, collections);
+const routes = require('./routes');
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb:localhost/nameless-island-78140", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/google_books_db", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

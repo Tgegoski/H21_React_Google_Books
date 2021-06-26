@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import API from "../routes/api";
-import NavBar from "../components/NavBar";
-import SearchBooks from "../components/SearchBooks";
 import SearchForm from "../components/SearchForm";
+import { Card, Alert } from 'react-bootstrap';
+
 
 class SaveBooks extends Component {
   state = {
@@ -12,9 +11,9 @@ class SaveBooks extends Component {
   };
 
   // When the component mounts, load the next book to be displayed
-  componentDidMount() {
-    this.loadNextBook();
-  }
+  // componentDidMount() {
+  //   this.loadNextBook();
+  // }
 
   handleBtnClick = event => {
     // Get the data-value of the clicked button
@@ -40,15 +39,15 @@ class SaveBooks extends Component {
     this.loadNextDog();
   };
 
-  loadSavedBooks = () => {
-    API.getSavedBook()
-      .then(res =>
-        this.setState({
-          image: res.data.message
-        })
-      )
-      .catch(err => console.log(err));
-  };
+  // loadSavedBooks = () => {
+  //   API.getSavedBook()
+  //     .then(res =>
+  //       this.setState({
+  //         image: res.data.message
+  //       })
+  //     )
+  //     .catch(err => console.log(err));
+  // };
 
   render() {
     return (

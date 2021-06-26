@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Books } = require('../../models');
+const Books = require('../../models/books');
 const axios = require('axios');
 
 // GET all books
