@@ -3,11 +3,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require('mongoose');
-// const mongojs = require('mongojs')
 require('dotenv').config();
-// const databaseUrl = "googlebooks";
-// const collections = ['books'];
-// const db = mongojs(databaseUrl, collections);
 const routes = require('./routes');
 
 // Define middleware here
