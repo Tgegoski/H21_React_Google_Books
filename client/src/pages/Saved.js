@@ -9,6 +9,7 @@ class SaveBooks extends Component {
     match: false,
     matchCount: 0
   };
+  // TODO add view or delete option
 // When the component mounts, get a list of all available books and update this.state.books
 componentDidMount() {
   API.getBaseBooksList()

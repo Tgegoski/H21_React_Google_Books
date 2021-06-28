@@ -13,7 +13,7 @@ class SearchBooks extends Component {
     results: [],
     error: ""
   };
-
+// TODO add view or save option
   // When the component mounts, get a list of all available books and update this.state.books
   componentDidMount() {
     API.getBaseBooksList()

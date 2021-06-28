@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Home from "./pages/Home";
-import SavedBooks from "./pages/Saved";
+import Saved from "./pages/Saved";
+import SavedBooks from "./components/SavedBooks";
 import Nav from "./components/NavBar";
 import "./App.css";  
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
    
 function App() {
