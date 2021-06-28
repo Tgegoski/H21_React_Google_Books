@@ -5,6 +5,7 @@ import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
 import Alert from "../components/Alert";
 
+// Need on click to take you to page to view each book.
 class SearchBooks extends Component {
   state = {
     search: "",
@@ -35,6 +36,7 @@ class SearchBooks extends Component {
       })
       .catch(err => this.setState({ error: err.message }));
   };
+  // Add an alert for when nothing is found.
   render() {
     return (
       <div>

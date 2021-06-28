@@ -2,17 +2,10 @@ import React, { useState } from "react";
 import axios from 'axios';  
 import { Card } from 'react-bootstrap';  
 
-const API_KEY = `${process.env.REACT_APP_GOOGLE_API_KEY}`
- 
 function GoogleBooksSearch() {  
     const [book, setBook] = useState("");  
     const [result, setResult] = useState([]);  
-
-    
-    var config = {}
-    var token = config.MY_API_TOKEN;
-    var key = config.SECRET_API_KEY; 
-
+     
     function handleChange(event) {  
         const book = event.target.value;  
         setBook(book);  
@@ -58,4 +51,4 @@ function GoogleBooksSearch() {
     )  
 }  
   
-export default GoogleBooksSearch  
+export default GoogleBooksSearch;  

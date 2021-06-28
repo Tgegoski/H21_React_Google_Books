@@ -7,7 +7,7 @@ export default function Home () {
       <div>
         <h1>Home Page</h1>
         <p>
-            Welcome to Google Books search! You can search for books by Title.  
+            Welcome to Google Books search! You can search for books by Title or Author.  
             You can then save any books that you would like to view later!  </p>
       </div>
       <GoogleBooksForm />

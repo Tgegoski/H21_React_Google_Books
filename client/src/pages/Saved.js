@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SearchForm from "../components/SearchForm";
+// import SaveBooks from "../components/SaveBooks";
 import { Card, Alert } from 'react-bootstrap';
-
 
 class SaveBooks extends Component {
   state = {
@@ -9,63 +9,106 @@ class SaveBooks extends Component {
     match: false,
     matchCount: 0
   };
-
-  // When the component mounts, load the next book to be displayed
-  // componentDidMount() {
-  //   this.loadNextBook();
-  // }
-
-  handleBtnClick = event => {
-    // Get the data-value of the clicked button
-    const btnType = event.target.attributes.getNamedItem("data-value").value;
-    // Clone this.state to the newState object
-    // We'll modify this object and use it to set our component's state
-    const newState = { ...this.state };
-
-    if (btnType === "pick") {
-      // Set newState.match to either true or false depending on whether or not the dog likes us (1/5 chance)
-      newState.match = 1 === Math.floor(Math.random() * 5) + 1;
-
-      // Set newState.matchCount equal to its current value or its current value + 1 depending on whether the dog likes us
-      newState.matchCount = newState.match
-        ? newState.matchCount + 1
-        : newState.matchCount;
-    } else {
-      // If we thumbs down'ed the dog, we haven't matched with it
-      newState.match = false;
-    }
-    // Replace our component's state with newState, load the next dog image
-    this.setState(newState);
-    this.loadNextDog();
-  };
-
-  // loadSavedBooks = () => {
-  //   API.getSavedBook()
-  //     .then(res =>
-  //       this.setState({
-  //         image: res.data.message
-  //       })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
-
-  render() {
-    return (
-      <div>
-        <h1 className="text-center">Select Books You Like!</h1>
-        <h3 className="text-center">
-          Save any books you want to view!
-        </h3>
-        <Card image={this.state.image} handleBtnClick={this.handleBtnClick} />
-        <h1 className="text-center">
-          Saved {this.state.matchCount} books so far!
-        </h1>
-        <Alert style={{ opacity: this.state.match ? 1 : 0 }} type="success">
-          Yay! You saved all your books!
-        </Alert>
-      </div>
-    );
-  }
+// When the component mounts, get a list of all available books and update this.state.books
+componentDidMount() {
+  API.getBaseBooksList()
+    .then(res => this.setState({ books: res.data.message }))
+    .catch(err => console.log(err));
 }
 
-export default SaveBooks;
+handleInputChange = event => {
+  this.setState({ search: event.target.value });
+}
+
+loadSavedBooks = () => {
+    API.getSavedBook()
+      .then(res =>
+        this.setState({
+          image: res.data.message
+        })
+      )
+      .catch(err => console.log(err));
+  }
+
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+  if (formObject.title && formObject.author) {
+    API.saveBook({
+      title: formObject.title,
+      author: formObject.author,
+      synopsis: formObject.synopsis
+    })
+      .then(res => loadBooks())
+      .catch(err => console.log(err));
+  }
+
+
+  return (
+    <Container fluid>
+      <Row>
+        <Col size="md-6">
+          <Jumbotron>
+            <h1>What Books Should I Read?</h1>
+          </Jumbotron>
+          <form>
+            <Input
+              onChange={handleInputChange}
+              name="title"
+              placeholder="Title (required)"
+            />
+            <Input
+              onChange={handleInputChange}
+              name="author"
+              placeholder="Author (required)"
+            />
+            <TextArea
+              onChange={handleInputChange}
+              name="synopsis"
+              placeholder="Synopsis (Optional)"
+            />
+            <FormBtn
+              disabled={!(formObject.author && formObject.title)}
+              onClick={handleFormSubmit}
+            >
+              Submit Book
+            </FormBtn>
+          </form>
+        </Col>
+        <Col size="md-6 sm-12">
+          <Jumbotron>
+            <h1>Books On My List</h1>
+          </Jumbotron>
+          {books.length ? (
+            <List>
+              {books.map(book => (
+                <ListItem key={book._id}>
+                  <Link to={"/books/" + book._id}>
+                    <strong>
+                      {book.title} by {book.author}
+                    </strong>
+                  </Link>
+                  <DeleteBtn onClick={() => deleteBook(book._id)} />
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+            <h3>No Results to Display</h3>
+          )}
+        </Col>
+      </Row>
+    </Container>
+  )
+    }
+
+  export default SaveBooks;
+// export default Books;
+
+
+
+
+  
+  
+  
+  
+

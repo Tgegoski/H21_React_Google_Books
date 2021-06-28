@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Home from "./pages/Home";
-import SaveBooks from "./pages/Saved";
+import SavedBooks from "./pages/Saved";
 import Nav from "./components/NavBar";
 import "./App.css";  
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,7 +14,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/index.html" component={Home} />
-          <Route exact path="/saved" component={SaveBooks} />
+          <Route exact path="/saved" component={SavedBooks} />
         </Switch>
       </div>
       
