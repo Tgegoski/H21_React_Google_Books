@@ -1,7 +1,7 @@
 import React, { useState } from "react";  
 import axios from 'axios';  
 import { Card } from 'react-bootstrap';  
-import googleBooksSearch from "./components/googleBooksSearch";
+import googleBooksSearch from "./components/SearchBooks/googleBooksSearch";
 
 function GoogleBooksSearch() {  
     const [book, setBook] = useState("");  
@@ -50,6 +50,6 @@ function GoogleBooksSearch() {
         </form>  
   
     )  
-}  
+};  
   
 export default GoogleBooksSearch;  

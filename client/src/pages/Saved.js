@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import Container from "../components/";
-// import SaveBooks from "../components/saveBooks";
+import Container from "../components/Grid";
+import Nav from "../comp/NavBar";
+import Jumbotron from './components/Jumbotron';
+import SavedBooksList from "../components/savedBooks";
 // import { Card, Alert } from 'react-bootstrap';
 
-class SaveBooks extends Component {
+class SavedBooks extends Component {
   state = {
     image: "",
     match: false,
@@ -12,10 +14,10 @@ class SaveBooks extends Component {
   };
   // TODO add view saved books option
   // TODO add view or delete option
-  // TODO seperate saved books list from option to save a book
+  // TODO saved books list from option to save a book
 // When the component mounts, get a list of all available books and update this.state.books
 componentDidMount() {
-  API.getSaveBooksList()
+  API.getSavedBooksList()
     .then(res => this.setState({ books: res.data.message }))
     .catch(err => console.log(err));
 };
@@ -24,26 +26,26 @@ handleInputChange = event => {
   this.setState({ search: event.target.value });
 };
 
-handleFormSubmit = event =>  {
-  event.preventDefault();
-  if (formObject.title && formObject.author) {
-    API.saveBook({
-      title: formObject.title,
-      author: formObject.author,
-      synopsis: formObject.synopsis
-    })
-      .then(res => loadBooks())
-      .catch(err => console.log(err));
-  };
-};
-// loadSavedBooks = () => {
-//     API.getSaveBook()
-//       .then(res =>
-//         this.setState({
-//           image: res.data.message
-//         })
-//       )
+// handleFormSubmit = event =>  {
+//   event.preventDefault();
+//   if (formObject.title && formObject.author) {
+//     API.saveBook({
+//       title: formObject.title,
+//       author: formObject.author,
+//       synopsis: formObject.synopsis
+//     })
+//       .then(res => loadBooks())
 //       .catch(err => console.log(err));
+//   };
+// };
+loadSavedBooks = () => {
+    API.getSaveBook()
+      .then(res =>
+        this.setState({
+          image: res.data.message
+        })
+      )
+      .catch(err => console.log(err));
   
 render() {
   return (
@@ -102,13 +104,12 @@ render() {
       </Row>
     </Container>
     </div>
-  );
+  )
   }
 }
-();
 
-export default SaveBooks;
-// export default Books;
+
+export default SavedBooks;
 
 
 

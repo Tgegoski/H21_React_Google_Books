@@ -37,6 +37,18 @@ class SearchBooks extends Component {
       .catch(err => this.setState({ error: err.message }));
   };
   // Add an alert for when nothing is found.
+  // handleFormSubmit = event =>  {
+  //   event.preventDefault();
+  //   if (formObject.title && formObject.author) {
+  //     API.saveBook({
+  //       title: formObject.title,
+  //       author: formObject.author,
+  //       synopsis: formObject.synopsis
+  //     })
+  //       .then(res => loadBooks())
+  //       .catch(err => console.log(err));
+  //   };
+  // };
   render() {
     return (
       <div>
