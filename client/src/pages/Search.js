@@ -19,7 +19,7 @@ class SearchBooks extends Component {
     API.getBaseBooksList()
       .then(res => this.setState({ books: res.data.message }))
       .catch(err => console.log(err));
-  }
+  };
 
   handleInputChange = event => {
     this.setState({ search: event.target.value });

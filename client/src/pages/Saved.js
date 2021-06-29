@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import SearchForm from "../components/SearchForm";
-// import SaveBooks from "../components/SaveBooks";
-import { Card, Alert } from 'react-bootstrap';
+import API from "../utils/API";
+import Container from "../components/";
+// import SaveBooks from "../components/saveBooks";
+// import { Card, Alert } from 'react-bootstrap';
 
 class SaveBooks extends Component {
   state = {
@@ -9,30 +10,21 @@ class SaveBooks extends Component {
     match: false,
     matchCount: 0
   };
+  // TODO add view saved books option
   // TODO add view or delete option
+  // TODO seperate saved books list from option to save a book
 // When the component mounts, get a list of all available books and update this.state.books
 componentDidMount() {
-  API.getBaseBooksList()
+  API.getSaveBooksList()
     .then(res => this.setState({ books: res.data.message }))
     .catch(err => console.log(err));
-}
+};
 
 handleInputChange = event => {
   this.setState({ search: event.target.value });
-}
+};
 
-loadSavedBooks = () => {
-    API.getSavedBook()
-      .then(res =>
-        this.setState({
-          image: res.data.message
-        })
-      )
-      .catch(err => console.log(err));
-  }
-
-
-function handleFormSubmit(event) {
+handleFormSubmit = event =>  {
   event.preventDefault();
   if (formObject.title && formObject.author) {
     API.saveBook({
@@ -42,10 +34,20 @@ function handleFormSubmit(event) {
     })
       .then(res => loadBooks())
       .catch(err => console.log(err));
-  }
-
-
+  };
+};
+// loadSavedBooks = () => {
+//     API.getSaveBook()
+//       .then(res =>
+//         this.setState({
+//           image: res.data.message
+//         })
+//       )
+//       .catch(err => console.log(err));
+  
+render() {
   return (
+    <div>
     <Container fluid>
       <Row>
         <Col size="md-6">
@@ -99,10 +101,13 @@ function handleFormSubmit(event) {
         </Col>
       </Row>
     </Container>
-  )
-    }
+    </div>
+  );
+  }
+}
+();
 
-  export default SaveBooks;
+export default SaveBooks;
 // export default Books;
 
 
