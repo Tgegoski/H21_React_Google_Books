@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Saved from "./pages/Saved";
 import Search from "./pages/Search";
@@ -7,7 +8,7 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/NavBar";
 import "./App.css";  
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
    
 function App() {
   return (

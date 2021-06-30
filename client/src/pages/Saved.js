@@ -1,121 +1,38 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import API from "../utils/API";
+import SavedBooksList from "../components/SavedBooksList";
 import Container from "../components/Grid";
-import Nav from "../comp/NavBar";
+import NavBar from "../comp/NavBar";
 import Jumbotron from './components/Jumbotron';
-import SavedBooksList from "../components/savedBooks";
-// import { Card, Alert } from 'react-bootstrap';
+import ListItem from "../components/savedBooks";
+import { DeleteBtn } from 'react-bootstrap';
 
-class SavedBooks extends Component {
+class SavedBooksList extends Component {
   state = {
-    image: "",
-    match: false,
-    matchCount: 0
+    
+    savedBooksList: []
   };
+  
   // TODO add view saved books option
-  // TODO add view or delete option
-  // TODO saved books list from option to save a book
+
 // When the component mounts, get a list of all available books and update this.state.books
 componentDidMount() {
-  API.getSavedBooksList()
-    .then(res => this.setState({ books: res.data.message }))
+  API.getBooks()
+    .then(res => this.setState({ savedBooksList: res.data.message }))
     .catch(err => console.log(err));
 };
 
-handleInputChange = event => {
-  this.setState({ search: event.target.value });
-};
+handleDeleteBtn = id => {
+        API.deleteBook(id)
+          .then(res => this.componentDidMount())
+          .catch(err => console.log(err));
+}
 
-// handleFormSubmit = event =>  {
-//   event.preventDefault();
-//   if (formObject.title && formObject.author) {
-//     API.saveBook({
-//       title: formObject.title,
-//       author: formObject.author,
-//       synopsis: formObject.synopsis
-//     })
-//       .then(res => loadBooks())
-//       .catch(err => console.log(err));
-//   };
-// };
-loadSavedBooks = () => {
-    API.getSaveBook()
-      .then(res =>
-        this.setState({
-          image: res.data.message
-        })
-      )
-      .catch(err => console.log(err));
-  
 render() {
   return (
-    <div>
-    <Container fluid>
-      <Row>
-        <Col size="md-6">
-          <Jumbotron>
-            <h1>What Books Should I Read?</h1>
-          </Jumbotron>
-          <form>
-            <Input
-              onChange={handleInputChange}
-              name="title"
-              placeholder="Title (required)"
-            />
-            <Input
-              onChange={handleInputChange}
-              name="author"
-              placeholder="Author (required)"
-            />
-            <TextArea
-              onChange={handleInputChange}
-              name="synopsis"
-              placeholder="Synopsis (Optional)"
-            />
-            <FormBtn
-              disabled={!(formObject.author && formObject.title)}
-              onClick={handleFormSubmit}
-            >
-              Submit Book
-            </FormBtn>
-          </form>
-        </Col>
-        <Col size="md-6 sm-12">
-          <Jumbotron>
-            <h1>Books On My List</h1>
-          </Jumbotron>
-          {books.length ? (
-            <List>
-              {books.map(book => (
-                <ListItem key={book._id}>
-                  <Link to={"/books/" + book._id}>
-                    <strong>
-                      {book.title} by {book.author}
-                    </strong>
-                  </Link>
-                  <DeleteBtn onClick={() => deleteBook(book._id)} />
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <h3>No Results to Display</h3>
-          )}
-        </Col>
-      </Row>
-    </Container>
-    </div>
+    <SavedBooksList savedBooks={this.state.savedBooks} handleDeleteBtn={this.handleDeleteBtn} />
+    
   )
   }
 }
-
-
-export default SavedBooks;
-
-
-
-
-  
-  
-  
-  
-
+export default SavedBooksList;

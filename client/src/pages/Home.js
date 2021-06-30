@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-// import SearchBooks from "../components/SearchBooks";
+import React from "react";
 import GoogleBooksForm from "../components/SearchBooks/googleBooksSearch";
 export default function Home () {
   return (
