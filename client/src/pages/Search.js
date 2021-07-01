@@ -21,7 +21,7 @@ class SearchBooks extends Component {
   // When the component mounts, get a list of all available books and update this.state.books
   componentDidMount() {
     API.getBaseBooksList()
-      .then(res => this.setState({ searchBooksList: res.data.message }))
+      .then(res => this.setState({ searchBooks: res.data.message }))
       .catch(err => console.log(err));
   };
 
@@ -43,7 +43,6 @@ class SearchBooks extends Component {
   // Add an alert for when nothing is found.
   handleInputChange = event => {
     this.setState({ search: event.target.value });
-  
   }
     
     handleInputChange(event) {
@@ -64,7 +63,7 @@ class SearchBooks extends Component {
   }
   handleSaveBtn = event => {
     event.preventDefault();
-    let savedBooksList = this.state.books.filter(book => book.id === event.target.id)
+    let savedBooks = this.state.books.filter(book => book.id === event.target.id)
     API.savedBooks(savedBooks)
     .then(console.log(savedBooks))
     .catch(err => console.log(err));

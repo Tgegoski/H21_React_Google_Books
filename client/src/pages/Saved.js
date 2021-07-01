@@ -1,13 +1,10 @@
 import React, { Component, useState, useEffect } from "react";
 import API from "../utils/API";
-import SavedBooksList from "../components/SavedBooksList";
-import Container from "../components/Grid";
-import NavBar from "../comp/NavBar";
-import Jumbotron from './components/Jumbotron';
-import ListItem from "../components/savedBooks";
+import "bootstrap/dist/css/bootstrap.min.css";
+import SavedBooks from "../components/SavedBooks";
 import { DeleteBtn } from 'react-bootstrap';
 
-class SavedBooksList extends Component {
+class SavedBooks extends Component {
   state = {
     
     savedBooksList: []
@@ -18,7 +15,7 @@ class SavedBooksList extends Component {
 // When the component mounts, get a list of all available books and update this.state.books
 componentDidMount() {
   API.getBooks()
-    .then(res => this.setState({ savedBooksList: res.data.message }))
+    .then(res => this.setState({ savedBooks: res.data.message }))
     .catch(err => console.log(err));
 };
 
@@ -35,4 +32,4 @@ render() {
   )
   }
 }
-export default SavedBooksList;
+export default SavedBooks;
